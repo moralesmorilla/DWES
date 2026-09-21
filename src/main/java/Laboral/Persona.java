@@ -1,0 +1,17 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Laboral;
+
+/**
+ *
+ * @author usuario26
+ */
+public interface Persona {
+
+    public  void setDni(String dni);
+
+    public void imprime();
+    
+}
