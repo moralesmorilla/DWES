@@ -14,6 +14,9 @@ public class Empleado implements Persona {
     private int categoria;
     private int anyos;
 
+    public Empleado() {
+    }
+
     public Empleado (String nombre, String dni, Character sexo, int categoria, int anyos) {
         if (categoria < 0 || categoria > 10) {
             this.categoria = 1;
