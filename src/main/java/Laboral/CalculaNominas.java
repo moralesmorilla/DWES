@@ -4,10 +4,7 @@
 
 package Laboral;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 /**
  *
@@ -16,58 +13,55 @@ import java.io.IOException;
 public class CalculaNominas {
     
     public static void main(String[] args) {
-        Empleado empleado;
-        String name ="";
-        String dni="";
-        char sexo=' ';
+
         int categoria;
         int anyos;
         //Creamos ambos empleados
-            String ruta = "C:\\Users\\usuario26\\Documents\\NetBeansProjects\\DWES\\EvaluacionInicial\\src\\main\\resources\\empleados.txt";
-            try(BufferedReader br = new BufferedReader(new FileReader(ruta))){
-                String linea;
+            String nombreArchivo="empleados";
+            String ruta = "D:\\DAW2\\DWES\\DWES\\src\\main\\java\\Laboral\\"+nombreArchivo+".txt";
+
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(ruta));
+            StringBuilder contenido = new StringBuilder();
+            String linea;
+
                 while ((linea = br.readLine()) != null){
 
-                    System.out.println(linea);
                     String[] datos = linea.split(";");
+                    String name = datos[0];
+                    String dni = datos[1];
+                    char sexo = datos[2].charAt(0);
+                    Empleado empleado;
                     if(datos.length <= 3){
-                        name = datos[0];
-                        dni = datos[1];
-                        sexo = datos[2].charAt(0);
-                        categoria=1;
-                        anyos=0;
                         empleado = new Empleado(name,dni,sexo);
+
                     }else{
-                    name = datos[0];
-                    dni = datos[1];
-                    sexo = datos[2].charAt(0);
                     categoria = Integer.parseInt(datos[3]);
                     anyos = Integer.parseInt(datos[4]);
                     empleado = new Empleado(name,dni,sexo,categoria,anyos);
-
                     }
                     escribe(empleado);
+                    contenido.append(name)
+                            .append(";")
+                            .append(dni)
+                            .append(";")
+                            .append(sexo)
+                            .append(";")
+                            .append(empleado.getCategoria())
+                            .append(";")
+                            .append(empleado.getAnyos())
+                            .append("\n");
                 }
+                br.close();
+
+                BufferedWriter bw = new BufferedWriter(new FileWriter(ruta));
+                bw.write(contenido.toString());
+                bw.close();
 
             }catch (IOException e){
                 System.out.println(e);
 
-//            //Llamamos al metodo privado escribe para ver dicha información
-//            escribe(James);
-//            System.out.println("------------------------");
-//            escribe(Ada);
-//            //Incrementamos los anios trabajado del segundo empleado
-//            System.out.println("---------------------");
-//            Ada.incrAnyo();
-//            System.out.println("Incrementamos anios");
-//            System.out.println("---------------------");
-//            //Categoria del primero lo ponemos en 9
-//            System.out.println("---------------------");
-//            System.out.println("Cambio de categoria");
-//            James.setCategoria(9);
-//            System.out.println("------------------------");
-//            escribe(James);
-//            escribe(Ada);
+
 
 }
 
