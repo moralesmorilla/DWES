@@ -17,14 +17,16 @@ public class Nomina {
             = {50000, 70000, 90000, 110000, 130000,
                 150000, 170000, 190000, 210000, 230000};
     
-    public void sueldo(Empleado e) {
-        int sueldo;
+    public int sueldo(Empleado e) {
+        int sueldo,sueldoTotal;
         if(e.getCategoria()>10){
             sueldo=sueldoBase[9];
         }else{
             sueldo = sueldoBase[e.getCategoria()];
         }
-        System.out.println(sueldo + 5000 * e.getAnyos());
+        sueldoTotal=sueldo + 5000 * e.getAnyos();
+        System.out.println(sueldoTotal);
+        return sueldoTotal;
 
     }
     

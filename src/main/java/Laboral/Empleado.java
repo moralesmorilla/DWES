@@ -61,6 +61,26 @@ public class Empleado implements Persona {
         this.anyos=0;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public Character getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Character sexo) {
+        this.sexo = sexo;
+    }
+
     public void setCategoria (int categoria) {
         this.categoria = categoria;
     }
@@ -72,6 +92,11 @@ public class Empleado implements Persona {
     public void incrAnyo () {
         this.anyos ++;
     }
+
+    public void setAnyos(int anyos) {
+        this.anyos = anyos;
+    }
+
     public int getAnyos(){
         return anyos;
     }
