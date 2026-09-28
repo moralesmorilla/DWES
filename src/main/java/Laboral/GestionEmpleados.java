@@ -38,7 +38,6 @@ public class GestionEmpleados {
 
 
         int sueldo = calcularNominas.sueldo(empleado);
-        System.out.println(sueldo);
 
         String insertarNomina = "INSERT INTO nomina(dni,sueldo) VALUES(?,?)";
         PreparedStatement ps = conexion.prepareStatement(insertarNomina);
