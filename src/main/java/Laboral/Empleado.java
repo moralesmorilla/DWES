@@ -8,16 +8,16 @@ package Laboral;
  *
  * @author usuario26
  */
-public class Empleado implements Persona {
-    private String nombre,dni;
-    private Character sexo;
+public class Empleado extends Persona {
     private int categoria;
     private int anyos;
 
     public Empleado() {
+        super();
     }
 
     public Empleado (String nombre, String dni, Character sexo, int categoria, int anyos) {
+        super(nombre,dni,sexo);
         if (categoria < 0 || categoria > 10) {
             this.categoria = 1;
         } else {
@@ -29,57 +29,16 @@ public class Empleado implements Persona {
         } else {
             this.anyos = anyos;
         }
-        if(nombre.isEmpty() || nombre==null){
-            throw new  DatosNoCorrectosException("Datos no correctos");
-        }
-        if(dni.isEmpty() || dni==null){
-            throw new DatosNoCorrectosException("Datos no correctos");
-        }
-        if(sexo == null){
-            throw new DatosNoCorrectosException("Datos no correctos");
-        }
-        this.nombre = nombre;
-        this.dni = dni;
-        this.sexo = sexo;
+
     }
-
-    public Empleado ( String nombre, String dni, Character sexo) {
-        if(nombre.isEmpty() || nombre==null){
-            throw new  DatosNoCorrectosException("Datos no correctos");
-        }
-        if(dni.isEmpty() || dni==null){
-            throw new DatosNoCorrectosException("Datos no correctos");
-        }
-        if(sexo == null){
-            throw new DatosNoCorrectosException("Datos no correctos");
-        }
-
-        this.nombre = nombre;
-        this.dni = dni;
-        this.sexo = sexo;
+    public Empleado(String nombre,String dni,  Character sexo) {
+        super(nombre,dni,sexo);
         this.categoria=1;
         this.anyos=0;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
-    public String getDni() {
-        return dni;
-    }
-
-    public Character getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(Character sexo) {
-        this.sexo = sexo;
-    }
 
     public void setCategoria (int categoria) {
         this.categoria = categoria;
@@ -110,11 +69,11 @@ public class Empleado implements Persona {
 
     @Override
     public void imprime () {
-        System.out.println("Nombre: " + this.nombre +
-                           "\nDNI: " + this.dni + 
-                           "\nSexo: " + this.sexo + 
-                           "\nCategoria: " + this.categoria + 
-                           "\nAnyos trabajados: " + this.anyos
+        System.out.println("Nombre: " + nombre +
+                           "\nDNI: " + dni +
+                           "\nSexo: " + sexo +
+                           "\nCategoria: " + categoria +
+                           "\nAnyos trabajados: " + anyos
         );
     }
     

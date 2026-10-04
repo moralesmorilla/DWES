@@ -25,7 +25,6 @@ public class Nomina {
             sueldo = sueldoBase[e.getCategoria()];
         }
         sueldoTotal=sueldo + 5000 * e.getAnyos();
-        System.out.println(sueldoTotal);
         return sueldoTotal;
 
     }

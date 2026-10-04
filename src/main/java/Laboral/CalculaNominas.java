@@ -8,37 +8,52 @@ import Laboral.BBDD.SalarioEmpleado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
 
 public class CalculaNominas{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        try{
-            menu();
-        }catch (SQLException e){
-            System.out.println(e);
-        }
-//        try
-//
-////            GestionEmpleados gestionEmpleados = new GestionEmpleados();
-////            Empleado empleado = new Empleado(
-////                    "Carlos García",
-////                    "45678923D",
-////                    'M',
-////                    4,
-////                    6
-////            );
-//
-////            gestionEmpleados.altaEmpleado(empleado);
+        menuPartes();
+//        try{
+//            menu();
 //        }catch (SQLException e){
 //            System.out.println(e);
 //        }
 
     }
 
+    private static void menuPartes(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("------------------------");
+        System.out.println("Menu Partes:\n 0-Salir \n 1-Parte 1 \n 2-Parte 2");
+        int opcion = scan.nextInt();
+        switch (opcion){
+            case 0:
+                System.out.println("Saliendoooo");
+                break;
+            case 1:
+                parte1();
+                break;
+            case 2:
+                parte2();
+                break;
+            default:
+                System.out.println("Opcion no valida");
+        }
+    }
+    private static void parte2(){
+        System.out.println("Parte 2 en preparacion");
+        try{
+            menuParte2();
+        }catch (SQLException e){
+            System.out.println(e);
+        }
 
-    private static void menu() throws SQLException {
+    }
+
+    private static void menuParte2() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         int opcion;
         String dniEmpleado;
@@ -122,6 +137,23 @@ public class CalculaNominas{
                     System.out.println("Elige bien el numero");
             }
         }while (opcion!=4);
+
+    }
+    private static void parte1(){
+        Empleado empleado1 = new Empleado("James Cosling","32000032G",'M',4,7);
+
+        Empleado empleado2 = new Empleado("Ada Lovelace","32000031R",'F');
+        System.out.println("Mostrar info ambos empleados");
+        System.out.println("Empleado 1");
+        escribe(empleado1);
+        System.out.println("Empleado 2");
+        escribe(empleado2);
+
+        System.out.println("-------------------------");
+        System.out.println("Incrementar años trabajados del segundo empleado");
+        empleado2.incrAnyo();
+        System.out.println("Cambiar categoria segundo empleado a 9");
+        empleado1.setCategoria(9);
 
     }
     private static void escribe(Empleado e) {
