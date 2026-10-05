@@ -42,8 +42,10 @@ public class EmpleadoDAO {
             char sexo = rs.getString("sexo").charAt(0);
             int categoria = rs.getInt("categoria");
             int anyos = rs.getInt("anyos");
+            System.out.println("--------------------------------------");
             System.out.println("Empleado");
             System.out.println(nombre + " con dni-" + dni + " " + sexo + " \n Categoria " + categoria + " " + anyos + " años trabajados");
+            System.out.println("--------------------------------------");
             empleado = new Empleado(nombre, dni, sexo, categoria, anyos);
         }
         conexion.close();
@@ -98,9 +100,10 @@ public class EmpleadoDAO {
             int num = preparedStatement.executeUpdate();
             if (num == 0) {
                 System.out.println("No se ha podido actualizar el sueldo del empleado con dni " + dniEmpleado);
-            } else {
-                System.out.println("Se ha actualizado el sueldo del empleado con exito");
             }
+//            else {
+//                System.out.println("Se ha actualizado el sueldo del empleado con exito");
+//            }
             connection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);

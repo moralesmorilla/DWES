@@ -1,3 +1,1 @@
-Alan Turing;00421954T;M;3;12
-Grace Hopper;19061992H;F;5;25
 Margaret Hamilton;36019360M;F

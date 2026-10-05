@@ -75,6 +75,7 @@ public class CalculaNominas{
             int opcion;
             String dniEmpleado;
             do{
+                System.out.println("-----------------------------------");
                 System.out.println("Menu de Opciones");
                 System.out.println("0-Salir");
                 System.out.println("1-Alta de empleado");
@@ -85,6 +86,7 @@ public class CalculaNominas{
                 System.out.println("6-Recalcular y actualizar el sueldo de todos los empleados");
                 System.out.println("7-Realizar copia de seguridad de la  base de datos en un fichero");
                 opcion = scanner.nextInt();
+                System.out.println("-----------------------------------");
                 switch (opcion) {
                     case 0:
                         System.out.println("Saliendooooo...");
@@ -96,18 +98,28 @@ public class CalculaNominas{
                         int newOpcion = scanner.nextInt();
                         if(newOpcion==1){
                             System.out.println("Alta empleado por fichero en proceso");
-                            BufferedReader br = new BufferedReader(new FileReader("src/main/java/Laboral/BBDD/empleadosNuevos.txt"));
+                            BufferedReader br = new BufferedReader(new FileReader("src/main/java/Laboral/Files/empleadosNuevos.txt"));
                             String line;
                             while ((line = br.readLine()) != null) {
-                                String[] datos = line.split(",");
-                                String dni = datos[0];
-                                String nombre = datos[1];
-                                char sexo = datos[2].charAt(0);
-                                int categoria = Integer.parseInt(datos[3]);
-                                int anyos = Integer.parseInt(datos[4]);
-                                Empleado empleado = new Empleado(nombre,dni,sexo,categoria,anyos);
-                                EmpleadoDAO empleadoDAO = new EmpleadoDAO();
-                                empleadoDAO.altaEmpleado(empleado);
+                                String[] datos = line.split(";");
+                                if(datos.length==3){
+                                    String nombre = datos[0];
+                                    String dni = datos[1];
+                                    char sexo = datos[2].charAt(0);
+                                    Empleado empleado = new Empleado(nombre,dni,sexo);
+                                    EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+                                    empleadoDAO.altaEmpleado(empleado);
+                                }else{
+                                    String nombre = datos[0];
+                                    String dni = datos[1];
+                                    char sexo = datos[2].charAt(0);
+                                    int categoria = Integer.parseInt(datos[3]);
+                                    int anyos = Integer.parseInt(datos[4]);
+                                    Empleado empleado = new Empleado(nombre,dni,sexo,categoria,anyos);
+                                    EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+                                    empleadoDAO.altaEmpleado(empleado);
+                                }
+
 
                             }
                         }else{
@@ -128,8 +140,10 @@ public class CalculaNominas{
                         break;
                     case 2:
                         System.out.println("Mostrar Informacion del empleado");
+                        System.out.println("-----------------------------------");
                         EmpleadoDAO e1 = new EmpleadoDAO();
                         e1.mostrarEmpleados();
+
                         break;
                     case 3:
                         System.out.println("Mostrar salario empleado especifico");
@@ -179,7 +193,6 @@ public class CalculaNominas{
         Scanner scanner = new Scanner(System.in);
         ModificarEmpleado empleado = new ModificarEmpleado();
         System.out.println("Dime el dni del empleado");
-        scanner.nextLine();
         String dniEmpleado = scanner.nextLine();
         System.out.println("1-Modificar Nombre");
         System.out.println("2-Modificar DNI");
