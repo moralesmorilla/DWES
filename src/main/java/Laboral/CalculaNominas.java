@@ -59,6 +59,12 @@ public class CalculaNominas{
         System.out.println("Cambiar categoria segundo empleado a 9");
         empleado1.setCategoria(9);
         System.out.println("---------------------------");
+        System.out.println("Empleado 1");
+        escribe(empleado1);
+        System.out.println("-----------------------------");
+        System.out.println("Empleado 2");
+        escribe(empleado2);
+        System.out.println("---------------------------");
 
     }
     private static void parte2(){
@@ -71,12 +77,13 @@ public class CalculaNominas{
             do{
                 System.out.println("Menu de Opciones");
                 System.out.println("0-Salir");
-                System.out.println("1-Mostar Informacion de empleados");
-                System.out.println("2-Mostrar salario de un empleado por dni");
-                System.out.println("3-Modificar Datos de un empleado");
-                System.out.println("4-Recalcular y actualizar sueldo empleado");
-                System.out.println("5-Recalcular y actualizar el sueldo de todos los empleados");
-                System.out.println("6-Realizar copia de seguridad de la  base de datos en un fichero");
+                System.out.println("1-Alta de empleado");
+                System.out.println("2-Mostar Informacion de empleados");
+                System.out.println("3-Mostrar salario de un empleado por dni");
+                System.out.println("4-Modificar Datos de un empleado");
+                System.out.println("5-Recalcular y actualizar sueldo empleado");
+                System.out.println("6-Recalcular y actualizar el sueldo de todos los empleados");
+                System.out.println("7-Realizar copia de seguridad de la  base de datos en un fichero");
                 opcion = scanner.nextInt();
                 switch (opcion) {
                     case 0:
@@ -89,7 +96,7 @@ public class CalculaNominas{
                         int newOpcion = scanner.nextInt();
                         if(newOpcion==1){
                             System.out.println("Alta empleado por fichero en proceso");
-                            BufferedReader br = new BufferedReader(new FileReader("src/main/java/Laboral/BBDD/empleados.txt"));
+                            BufferedReader br = new BufferedReader(new FileReader("src/main/java/Laboral/BBDD/empleadosNuevos.txt"));
                             String line;
                             while ((line = br.readLine()) != null) {
                                 String[] datos = line.split(",");
@@ -137,10 +144,22 @@ public class CalculaNominas{
                         subMenu2();
                         break;
                     case 5:
-                        System.out.println("Recalculando y actualizar sueldo");
+                        System.out.println("Recalculando y actualizar sueldo empleado especifico");
+                        System.out.println("Dime el dni del empleado que desea buscar");
+                        scanner.nextLine();
+                        dniEmpleado = scanner.nextLine();
+                        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+                        Empleado empleado = empleadoDAO.mostrarEmpleado(dniEmpleado);
+                        Nomina nomina = new Nomina();
+                        int sueldo = nomina.sueldo(empleado);
+                        System.out.println("El sueldo del empleado "+empleado.getNombre()+" con dni "+empleado.getDni()+" es: "+sueldo);
+                        System.out.println("Actualizando sueldo en la base de datos");
+                        empleadoDAO.actualizarSueldoEmpleado(dniEmpleado,sueldo);
                         break;
                     case 6:
                         System.out.println("Recalculando y actualizando sueldo de todos los empleados");
+                        EmpleadoDAO empleadoDAO1 = new EmpleadoDAO();
+                        empleadoDAO1.actualizarSueldoTodosEmpleados();
                         break;
                     case 7:
                         System.out.println("Realizando copia de seguridad en archivo copiaEmpleados");
