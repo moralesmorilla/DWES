@@ -61,7 +61,7 @@ public class ModificarEmpleado {
         int filas = preparedStatement.executeUpdate();
         if (filas > 0) {
             System.out.println("Se actualizo con exito");
-            MostrarEmpleado empleado = new MostrarEmpleado();
+            EmpleadoDAO empleado = new EmpleadoDAO();
             Nomina nomina = new Nomina();
             int sueldo = nomina.sueldo(empleado.mostrarEmpleado(dni));
             String sqlUpdate = "UPDATE sueldo SET sueldo = ? WHERE dni = ?";
@@ -88,7 +88,7 @@ public class ModificarEmpleado {
         int filas = preparedStatement.executeUpdate();
         if (filas > 0) {
             System.out.println("Se actualizo con exito");
-            MostrarEmpleado empleado = new MostrarEmpleado();
+            EmpleadoDAO empleado = new EmpleadoDAO();
             Nomina nomina = new Nomina();
             int sueldo = nomina.sueldo(empleado.mostrarEmpleado(dni));
             String sqlUpdate = "UPDATE sueldo SET sueldo = ? WHERE dni = ?";

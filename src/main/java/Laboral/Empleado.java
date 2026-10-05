@@ -41,22 +41,27 @@ public class Empleado extends Persona {
 
 
     public void setCategoria (int categoria) {
+
         this.categoria = categoria;
     }
 
     public int getCategoria () {
+
         return this.categoria;
     }
 
     public void incrAnyo () {
-        this.anyos ++;
+
+        this.anyos++;
     }
 
     public void setAnyos(int anyos) {
+
         this.anyos = anyos;
     }
 
     public int getAnyos(){
+
         return anyos;
     }
 

@@ -1,0 +1,21 @@
+CREATE DATABASE IF NOT EXISTS empleados_nominas;
+
+USE empleados_nominas;
+
+DROP TABLE IF EXISTS nomina;
+DROP TABLE IF EXISTS empleado;
+
+CREATE TABLE empleado (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    dni VARCHAR(9) NOT NULL UNIQUE,
+    sexo CHAR(1) NOT NULL,
+    categoria INT NOT NULL CHECK (categoria > 0 AND categoria < 100),
+    anyos INT NOT NULL CHECK (anyos >= 0)
+);
+
+CREATE TABLE nomina (
+    dni VARCHAR(9) PRIMARY KEY,
+    sueldo DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (dni) REFERENCES empleado(dni)
+);
